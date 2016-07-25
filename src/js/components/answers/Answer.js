@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 const Answer = (props) => (
 	<button 
@@ -12,10 +10,4 @@ const Answer = (props) => (
 	</button>
 );
 
-const mapStateToProps = (state, ownProps) => ({
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Answer);
+export default Answer;

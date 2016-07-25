@@ -6,7 +6,6 @@ import AnswersItem 	from '../../components/answers/AnswersItem';
 
 import * as questionsActions from '../../actions/questions';
 
-//const Question = (props) => (
 class Question extends React.Component {
 
 	constructor(props) {
@@ -45,9 +44,13 @@ class Question extends React.Component {
 						<AnswersItem 
 							key={id}
 							answer={answer}
+							questionsType={props.question.type}
 							isDisabled={this.state.answerVisibility}
 							clickHandler={ (e) => {
 								e.preventDefault();
+								if (props.question.correctAnswer === answer.id){
+									console.log('Ты прав!!!')
+								}
 								props.setAnswer(answer.id);
 								this._showAnswer();
 							}}

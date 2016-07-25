@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 const Loading = (props) => (
 	<div className={( (props.mix ? props.mix : '') + ' loader ' + (props.loading ? 'loader--visible' : '') )} id="loader">
@@ -7,8 +6,4 @@ const Loading = (props) => (
 	</div>
 );
 
-const mapStateToProps = (state, ownProps) => ({
-	loading: state.loading,
-});
-
-export default connect(mapStateToProps, null)(Loading);
+export default Loading

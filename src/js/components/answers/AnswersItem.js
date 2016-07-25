@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import Answer from './Answer';
 
@@ -17,11 +15,4 @@ const AnswersItem = (props) => (
 	</li>
 );
 
-const mapStateToProps = (state, ownProps) => ({
-	questionsType: state.questions.type,
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AnswersItem);
+export default AnswersItem;

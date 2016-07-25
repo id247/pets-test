@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Main 		from '../components/pages/Main';
-import Question 	from '../components/pages/Question';
-import Results 		from '../components/pages/Results';
+import Main 		from '../containers/pages/Main';
+import Question 	from '../containers/pages/Question';
+import Results 		from '../containers/pages/Results';
 
 import Loading 		from '../components/Loading';
 
@@ -30,7 +30,10 @@ class App extends React.Component {
 		return (
 			<div className="app__container app-container">
 
-				<Loading mix="app-container__loading" />
+				<Loading 
+					mix="app-container__loading" 
+					loading={props.loading}
+				/>
 
 				<header className="app-container__header header">
 					<h1 className="header__title">
@@ -53,6 +56,7 @@ class App extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
 	questions: state.questions,
 	page: state.page,
+	loading: state.loading,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({ 
