@@ -8,53 +8,57 @@ import * as questionsActions 	from '../../actions/questions';
 import * as pageActions 		from '../../actions/page';
 
 const Main = (props) => (
-	<div className="main">
+	<div className={((props.mix ? props.mix : '') + ' main')}>
 
-		<div className="main__text">
-			<p>
-				Домашние животные нуждаются в нашей заботе не меньше, 
-				чем любой другой член семьи. 
-				Но всегда ли мы правильно понимаем их настроение? 
-				Пройдите тест и узнайте, хорошо ли вы разбираетесь в поведении своего питомца.
-			</p>
-		</div>
+		<div className="main__wrap wrap">
 
-		<div className="main__question question">
+			<div className="main__text">
+				<p>
+					Домашние животные нуждаются в нашей заботе не меньше, 
+					чем любой другой член семьи. 
+					Но всегда ли мы правильно понимаем их настроение? 
+					Пройдите тест и узнайте, хорошо ли вы разбираетесь в поведении своего питомца.
+				</p>
+			</div>
 
-			<h3 className="question__title">
-				У вас кошка или собака?
-			</h3>
+			<div className="main__question question">
 
-			<ul className="question__answers answers">
+				<h3 className="question__title">
+					У вас кошка или собака?
+				</h3>
 
-				<li className="answers__item">
+				<ul className="question__answers answers">
 
-					<Answer
-						mod='cat'
-						text='Кошка'
-						clickHandler={(e) => { 
-							e.preventDefault();
-							props.setQuestionsType('cat');
-						}}
-					/>
+					<li className="answers__item">
 
-				</li>
+						<Answer
+							mod='cat'
+							text='Кошка'
+							clickHandler={(e) => { 
+								e.preventDefault();
+								props.setQuestionsType('cat');
+							}}
+						/>
 
-				<li className="answers__item">
+					</li>
 
-					<Answer
-						mod='dog'
-						text='Собака'
-						clickHandler={(e) => { 
-							e.preventDefault();
-							props.setQuestionsType('dog');
-						}}
-					/>
+					<li className="answers__item">
 
-				</li>
+						<Answer
+							mod='dog'
+							text='Собака'
+							clickHandler={(e) => { 
+								e.preventDefault();
+								props.setQuestionsType('dog');
+							}}
+						/>
 
-			</ul>
+					</li>
 
+				</ul>
+
+			</div>
+			
 		</div>
 
 	</div>
@@ -65,8 +69,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	setQuestionsType: (type) => {
-		dispatch(questionsActions.setQuestionsType(type));
-		dispatch(pageActions.setPage('questions'));
+		dispatch(questionsActions.startQuestions(type));
 	}
 });
 

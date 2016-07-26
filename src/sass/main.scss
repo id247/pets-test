@@ -9,9 +9,132 @@
 }
 
 /* ==========================================================================
+ * wrap
+ * ========================================================================== */
+
+.wrap{
+	max-width: 1340px;
+	margin: auto;
+	padding: 0 10px;
+}
+
+/* ==========================================================================
+ * app
+ * ========================================================================== */
+
+.app{
+
+	&__container{
+		min-height: 100vh;
+		background: #fffaed;
+		padding: 0 0 50px;
+
+		position: relative;		
+		
+		background: #fff url(../images/bg/main.jpg) 50% 0 no-repeat;
+		background-size: cover;
+		
+		@for $i from 0 through 9 {
+			&--cat-#{$i}{	
+				background-image: url(../images/bg/cat-#{$i}.jpg);
+			}
+		}
+		
+		@for $i from 0 through 9 {
+			&--dog-#{$i}{	
+				background-image: url(../images/bg/cat-#{$i}.jpg);
+			}
+		}
+
+		&--results{
+			background-image: url(../images/bg/results.jpg);
+		}
+
+	}
+
+	&__loader{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+	&__header{
+	
+	}
+
+	&__content{
+	}
+}
+
+/* ==========================================================================
+ * loader
+ * ========================================================================== */
+
+.loader{
+	background: rgba(0,0,0,.5);
+	display: flex;
+	padding: 50px;
+	color: #fff;
+
+	opacity: 0;
+	visibility: hidden;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	transition: all .4s;
+	
+	&--visible{
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&__content{
+		font-size: 20px;
+		text-align: center;
+	}
+}
+
+
+/* ==========================================================================
+ * header
+ * ========================================================================== */
+
+.header{
+	padding: 60px 0 100px;
+
+	&__title{
+		text-align: center;
+		font-family: $appetite-new;	
+		color: #ff57c6;
+		font-size: 53px;
+		text-shadow: 	0 5px 0px #fff,
+						5px 5px 0px #fff,
+						5px -5px 0px #fff,
+						0 10px 15px rgba(0,0,0,.5);
+	}
+}
+
+/* ==========================================================================
  * main
  * ========================================================================== */
 
+.main{
+
+	&__text{
+		font-size: 22px;
+		margin: 0 auto 100px;
+		text-align: center;
+		max-width: 990px;
+	}
+
+	&__question{
+		
+	}
+}
 
  
 /* ==========================================================================
@@ -20,6 +143,17 @@
 
 .question{
 
+	&__title{
+		text-align: center;
+		margin: 0 0 50px;
+		font-size: 34px;
+		font-family: $appetite-new;
+		text-align: center;
+	}
+
+	&__answers{
+		margin: 0 0 50px;
+	}
 	&__correct-answer{
 		visibility: hidden;
 		opacity: 0;
@@ -27,5 +161,136 @@
 			visibility: visible;
 			opacity: 1;
 		}
+	}
+
+	&__text{
+		background: #d4f1ff;
+		border: 10px solid #fff;
+		border-radius: 20px;
+		text-align: center;
+		max-width: 840px;
+		margin: 0 auto 40px;
+		padding: 30px;
+		font-size: 22px;
+	}
+
+	&__button-placeholder{
+		text-align: center;
+	}
+
+}
+
+/* ==========================================================================
+ * answers
+ * ========================================================================== */
+
+.answers{
+
+	text-align: center;
+
+	&__item{
+		display: inline-block;
+		vertical-align: top;
+		margin: 0 20px 0;
+	}
+
+	&__answer{
+		text-align: center;
+		width: 230px;
+		height: 230px;
+		border: 10px solid #fff;
+		border-radius: 50%;
+		box-shadow: 0 5px 10px rgba(0,0,0,.3);
+		font-family: $appetite-new;
+		position: relative;
+		color: #fff;
+
+		cursor: pointer;
+		outline: none;
+		font-size: 53px;
+
+		&:hover{
+			opacity: .9;
+		}
+
+		&:active{
+			top: 4px;
+			box-shadow: 0 0px 3px rgba(0,0,0,.3);
+		}
+		&:disabled{
+			cursor: default;
+			&:hover{
+				opacity: 1;
+			}
+		}
+
+		&--yes{
+			background: #b6c92f;
+
+			&:disabled{
+				//background: #ccc;
+			}
+		}
+
+		&--no{
+			background: #ffafd9;
+		}
+
+		&--cat,
+		&--dog{
+			font-family: $mainFontFamily;
+			font-size: 22px;
+			padding: 125px 0 0;
+			&:before{
+				content: '';
+				position: absolute;
+			}
+		}
+		&--cat{
+			background: #f3d147;
+			&:before{
+				top: 30px;
+				left: 15px;
+				@include sprite($answer-cat);
+			}
+		}
+		&--dog{
+			background: #b6c92f;
+			&:before{
+				top: 33px;
+				left: 18px;
+				@include sprite($answer-dog);
+			}
+		}
+	}
+}
+
+/* ==========================================================================
+ * results
+ * ========================================================================== */
+
+.results{
+
+	&__text{
+		font-size: 34px;
+		font-family: $appetite-new;
+		text-align: center;
+		margin: 0 0 50px; 
+	}
+
+	&__correct-answers{
+		color: #ff57c6;
+		font-size: 45px;
+	}
+
+	&__buttons{
+		text-align: center;
+	}
+
+	&__button-placeholder{
+		display: inline-block;
+		vertical-align: top;
+		max-width: 47%;
+		margin: 0 1% 20px;
 	}
 }

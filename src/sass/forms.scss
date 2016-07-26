@@ -14,7 +14,7 @@
 	transition: all .3s;
 	line-height: 1;
 
-	font-family: $mainFontFamily;
+	font-family: $appetite-new;
 
 	cursor: pointer;
 
@@ -38,6 +38,19 @@
 		}
 	}
 
+	&--yellow{
+		background: #f3d147;
+		color: #fff;
+		box-shadow: 0 5px 8px rgba(0,0,0,.4);
+
+		&:hover{
+			background: lighten(#f3d147, 5%);
+		}
+		&:active{
+			background: darken(#f3d147, 5%);
+		}
+	}
+
 	&--m{
 		border-radius: 8px;
 		font-weight: 700;
@@ -46,16 +59,16 @@
 	}
 
 	&--l{
-		border-radius: 8px;
+		border-radius: 5px;
 		font-weight: 700;
-		font-size: 15px;
-		padding: 10px 20px 10px;
+		font-size: 34px;
+		padding: 15px 40px 15px;
 	}
 
 	&--block{
 		width: 100%;	
-		padding-left: 0;
-		padding-right: 0;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 
 

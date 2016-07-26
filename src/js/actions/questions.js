@@ -52,6 +52,7 @@ export function setActiveQuestion(id) {
 }
 
 export const SET_QUESTION_ANSWER 	= 'SET_QUESTION_ANSWER';
+export const DELETE_ANSWERS 		= 'DELETE_ANSWERS';
 export function setQuestionAnswer(answerId) {
 	return (dispatch, getState) => {		
 
@@ -64,6 +65,22 @@ export function setQuestionAnswer(answerId) {
 				answerId: answerId
 			},
 		})
+	}
+}
+
+export function deleteAnswers() {
+	return {
+		type: DELETE_ANSWERS,
+	}
+}
+
+export function startQuestions(type) {
+	return (dispatch, getState) => {	
+		
+		dispatch(setQuestionsType(type));
+		dispatch(setActiveQuestion(0));
+		dispatch(deleteAnswers());
+		dispatch(pageActions.setPage('questions'));
 	}
 }
 

@@ -14,38 +14,43 @@ class App extends React.Component {
 		const { props } = this;
 
 		let page;
+		let bgMod;
 
 		switch (props.page){
 			case 'questions':
-				page = <Question />;
+				page = <Question mix="app__content" />;
+				bgMod = props.questions.type + '-' + props.questions.activeQuestion 
 				break;
 			case 'results':
-				page = <Results />;
+				page = <Results mix="app__content" />;
+				bgMod = 'results';
 				break;
 			case 'main':
 			default:
-				page = <Main />
+				page = <Main mix="app__content" />;
 		}
 
 		return (
-			<div className="app__container app-container">
+			<div className={('app__container ' + (bgMod ? 'app__container--' + bgMod : '') )}>
 
 				<Loading 
-					mix="app-container__loading" 
+					mix="app__loader" 
 					loading={props.loading}
 				/>
 
-				<header className="app-container__header header">
-					<h1 className="header__title">
-						Хорошо ли вы знаете своего питомца?
-					</h1>
+				<header className="app__header header">
+					
+					<div className="header__wrap wrap">
+						
+						<h1 className="header__title">
+							Хорошо ли вы знаете своего питомца?
+						</h1>
+
+					</div>
+
 				</header>
 
-				<div className="app-container__content">
-
-					{page}
-
-				</div>
+				{page}
 
 			</div>
 		);

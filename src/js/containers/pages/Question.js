@@ -12,71 +12,77 @@ class Question extends React.Component {
 		super(props);
 		this.state ={
 			answerVisibility: false,
+			answerLabel: '',
 		}
 
 		this._showAnswer = this._showAnswer.bind(this);
 		this._hideAnswer = this._hideAnswer.bind(this);
 	}
 
-	_showAnswer() {
-		this.setState({answerVisibility: true});
+	_showAnswer(isCorrect) {
+		const text = isCorrect ? 'Правильно! =)' : 'Неправильно =(';
+		
+		this.setState({...this.state, answerVisibility: true, answerLabel: text});
 	}
 
 	_hideAnswer() {
-		this.setState({answerVisibility: false});
+		this.setState({...this.state, answerVisibility: false});
 	}
 
 
+
 	render() {
-		const { props } = this;
+		const { props, state } = this;
 
 		return (
-			<div className="question">
+			<div className={( (props.mix ? props.mix : '') + ' question ')}>
 
-				<h3 className="question__title">
-					{props.question.title}
-				</h3>
+				<div className="question__wrap wrap">
 
-				<ul className="question__answers answers">
+					<h3 className="question__title">
+						{props.activeQuestion + 1}. {props.question.title}
+					</h3>
 
-					{props.question.answers && props.question.answers.map( (answer, id) => (
+					<ul className="question__answers answers">
 
-						<AnswersItem 
-							key={id}
-							answer={answer}
-							questionsType={props.question.type}
-							isDisabled={this.state.answerVisibility}
-							clickHandler={ (e) => {
-								e.preventDefault();
-								if (props.question.correctAnswer === answer.id){
-									console.log('Ты прав!!!')
-								}
-								props.setAnswer(answer.id);
-								this._showAnswer();
-							}}
-						/>
+						{props.question.answers && props.question.answers.map( (answer, id) => (
 
-					))}
+							<AnswersItem 
+								key={id}
+								answer={answer}
+								isDisabled={this.state.answerVisibility}
+								clickHandler={ (e) => {
+									e.preventDefault();
+									props.setAnswer(answer.id);
+									const isCorrect = props.question.correctAnswer === answer.id;
+									this._showAnswer(isCorrect);
+								}}
+							/>
 
-				</ul>
+						))}
 
-				<div className={('question__correct-answer ' + (this.state.answerVisibility ? 'question__correct-answer--visible' : ''))}>
+					</ul>
 
-					<div className="question__text">
-						{props.question.text}
-					</div>
+					<div className={('question__correct-answer ' + (this.state.answerVisibility ? 'question__correct-answer--visible' : ''))}>
 
-					<div className="question__button-placeholder">
+						<div className="question__text">
+							<p>{state.answerLabel}</p>
+							<p>{props.question.text}</p>
+						</div>
 
-						<button 
-							className="button"
-							onClick={ (e) => {
-								props.nextQuestion()
-								this._hideAnswer();
-							}}
-						>
-							Далее
-						</button>
+						<div className="question__button-placeholder">
+
+							<button 
+								className="button button--l button--yellow"
+								onClick={ (e) => {
+									props.nextQuestion()
+									this._hideAnswer();
+								}}
+							>
+								Далее
+							</button>
+
+						</div>
 
 					</div>
 
@@ -90,7 +96,6 @@ class Question extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
 	question: state.questions.data[state.questions.type][state.questions.activeQuestion],
 	activeQuestion: state.questions.activeQuestion,	
-
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

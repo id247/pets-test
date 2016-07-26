@@ -33,6 +33,8 @@ export function answers(state = [], action) {
 	switch (action.type) {
 		case actions.SET_QUESTION_ANSWER:
 			return [...state, action.payload];
+		case actions.DELETE_ANSWERS:
+			return [];
 		default:
 			return state;
 	}

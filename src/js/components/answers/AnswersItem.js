@@ -6,7 +6,7 @@ const AnswersItem = (props) => (
 	<li className="answers__item">
 
 		<Answer
-			mod={props.questionsType}
+			mod={props.answer.id}
 			text={props.answer.text}
 			isDisabled={props.isDisabled}
 			clickHandler={props.clickHandler}
