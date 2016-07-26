@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Answer from './Answer';
+import AnswerButton from './AnswerButton';
 
 const AnswersItem = (props) => (
 	<li className="answers__item">
 
-		<Answer
+		<AnswerButton
 			mod={props.answer.id}
 			text={props.answer.text}
 			isDisabled={props.isDisabled}

@@ -38,30 +38,34 @@ class Question extends React.Component {
 			<div className={( (props.mix ? props.mix : '') + ' question ')}>
 
 				<div className="question__wrap wrap">
+					
+					<div className={('question__ask ' + (this.state.answerVisibility ? 'question__ask--invisible' : ''))}>
 
-					<h3 className="question__title">
-						{props.activeQuestion + 1}. {props.question.title}
-					</h3>
+						<h3 className="question__title">
+							{props.activeQuestion + 1}. {props.question.title}
+						</h3>
 
-					<ul className="question__answers answers">
+						<ul className="question__answers answers">
 
-						{props.question.answers && props.question.answers.map( (answer, id) => (
+							{props.question.answers && props.question.answers.map( (answer, id) => (
 
-							<AnswersItem 
-								key={id}
-								answer={answer}
-								isDisabled={this.state.answerVisibility}
-								clickHandler={ (e) => {
-									e.preventDefault();
-									props.setAnswer(answer.id);
-									const isCorrect = props.question.correctAnswer === answer.id;
-									this._showAnswer(isCorrect);
-								}}
-							/>
+								<AnswersItem 
+									key={id}
+									answer={answer}
+									isDisabled={this.state.answerVisibility}
+									clickHandler={ (e) => {
+										e.preventDefault();
+										props.setAnswer(answer.id);
+										const isCorrect = props.question.correctAnswer === answer.id;
+										this._showAnswer(isCorrect);
+									}}
+								/>
 
-						))}
+							))}
 
-					</ul>
+						</ul>
+
+					</div>
 
 					<div className={('question__correct-answer ' + (this.state.answerVisibility ? 'question__correct-answer--visible' : ''))}>
 

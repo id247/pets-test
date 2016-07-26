@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Answer 	from '../../components/answers/Answer';
+import AnswerButton 	from '../../components/answers/AnswerButton';
 
 import * as questionsActions 	from '../../actions/questions';
 import * as pageActions 		from '../../actions/page';
@@ -31,12 +31,12 @@ const Main = (props) => (
 
 					<li className="answers__item">
 
-						<Answer
+						<AnswerButton
 							mod='cat'
 							text='Кошка'
 							clickHandler={(e) => { 
 								e.preventDefault();
-								props.setQuestionsType('cat');
+								props.startQuestions('cat');
 							}}
 						/>
 
@@ -44,12 +44,12 @@ const Main = (props) => (
 
 					<li className="answers__item">
 
-						<Answer
+						<AnswerButton
 							mod='dog'
 							text='Собака'
 							clickHandler={(e) => { 
 								e.preventDefault();
-								props.setQuestionsType('dog');
+								props.startQuestions('dog');
 							}}
 						/>
 
@@ -68,7 +68,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	setQuestionsType: (type) => {
+	startQuestions: (type) => {
 		dispatch(questionsActions.startQuestions(type));
 	}
 });

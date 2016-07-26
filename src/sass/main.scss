@@ -42,7 +42,7 @@
 		
 		@for $i from 0 through 9 {
 			&--dog-#{$i}{	
-				background-image: url(../images/bg/cat-#{$i}.jpg);
+				background-image: url(../images/bg/dog-#{$i}.jpg);
 			}
 		}
 
@@ -143,6 +143,14 @@
 
 .question{
 
+	&__ask{
+		&--invisible{
+			display: none;
+			//visibility: hidden;
+			//opacity: 0;
+		}
+	}
+
 	&__title{
 		text-align: center;
 		margin: 0 0 50px;
@@ -155,11 +163,14 @@
 		margin: 0 0 50px;
 	}
 	&__correct-answer{
-		visibility: hidden;
-		opacity: 0;
+		//visibility: hidden;
+		//opacity: 0;
+		display: none;
+		
 		&--visible{
-			visibility: visible;
-			opacity: 1;
+			//visibility: visible;
+			//opacity: 1;
+			display: block;
 		}
 	}
 

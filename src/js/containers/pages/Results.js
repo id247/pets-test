@@ -64,10 +64,11 @@ const Results = (props) => {
 						<button 
 							className="results__button button button--l button--yellow button--block"
 							onClick={(e)=> {
-								props.setQuestionsType('cat');
+								const type = props.questionsType === 'cat' ? 'dog' : 'cat';
+								props.setQuestionsType(type);
 							}}
 						>
-							А что вы знаете про кошек?
+							А что вы знаете про {(props.questionsType === 'cat' ? 'собак' : 'кошек')}?
 						</button>
 
 					</li>
@@ -95,6 +96,7 @@ const mapStateToProps = (state, ownProps) => ({
 		return correctAnswers;
 	})(),
 	questionsCount: state.questions.data[state.questions.type].length,
+	questionsType: state.questions.type,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
