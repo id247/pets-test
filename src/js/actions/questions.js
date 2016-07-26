@@ -105,7 +105,7 @@ export function questionsGet() {
 	return (dispatch, getState) => {	
 		dispatch(getQuestionsStart());
 				
-		return fetch(APPoptions.quistionsUrl)
+		return fetch(APPoptions.quistionsUrl + '?' + Math.random())
 		.then( response => response.json())
 		.then( questions => {
 			//console.log(questions);

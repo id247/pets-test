@@ -2,7 +2,7 @@
   "name": "project",
   "version": "1.0.0",
   "description": "",
-  "cdn": "https://ad.csdnevnik.ru/special/staging/folder/",
+  "cdn": "https://ad.csdnevnik.ru/special/staging/pets/",
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
