@@ -157,11 +157,7 @@
 .question{
 
 	&__ask{
-		&--invisible{
-			display: none;
-			//visibility: hidden;
-			//opacity: 0;
-		}
+		
 	}
 
 	&__title{
@@ -179,16 +175,8 @@
 	&__answers{
 		margin: 0 0 0px;
 	}
-	&__correct-answer{
-		//visibility: hidden;
-		//opacity: 0;
-		display: none;
-		
-		&--visible{
-			//visibility: visible;
-			//opacity: 1;
-			display: block;
-		}
+	&__answer{
+
 	}
 
 	&__text{

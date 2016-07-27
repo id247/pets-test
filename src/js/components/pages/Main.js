@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import AnswerButton 	from '../../components/answers/AnswerButton';
+import AnswerButton from '../../components/answers/AnswerButton';
 
-import * as questionsActions 	from '../../actions/questions';
-import * as pageActions 		from '../../actions/page';
+import * as questionsActions from '../../actions/questions';
 
 const Main = (props) => (
-	<div className={((props.mix ? props.mix : '') + ' main')}>
+	<div className={((props.mixClass ? props.mixClass : '') + ' main')}>
 
 		<div className="main__wrap wrap">
 
@@ -63,6 +62,10 @@ const Main = (props) => (
 
 	</div>
 );
+
+Main.propTypes = {
+	mixClass: React.PropTypes.string,
+};
 
 const mapStateToProps = (state, ownProps) => ({
 });

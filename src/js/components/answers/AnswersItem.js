@@ -15,4 +15,11 @@ const AnswersItem = (props) => (
 	</li>
 );
 
+AnswersItem.propTypes = {
+	text: React.PropTypes.string,
+	isDisabled: React.PropTypes.bool,
+	answer: React.PropTypes.object.isRequired,
+	clickHandler: React.PropTypes.func.isRequired,
+};
+
 export default AnswersItem;

@@ -4,10 +4,15 @@ const Answer = (props) => (
 	<button 
 		className={(' answers__answer ' + (props.mod ? 'answers__answer--' + props.mod : ''))}
 		onClick={props.clickHandler}
-		disabled={props.isDisabled === true ? true : false}
 	>
 		{props.text}
 	</button>
 );
+
+Answer.propTypes = {
+	mod: React.PropTypes.string,
+	text: React.PropTypes.string,
+	clickHandler: React.PropTypes.func.isRequired,
+};
 
 export default Answer;

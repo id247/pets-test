@@ -35,7 +35,7 @@ const Results = (props) => {
 	}
 
 	return (
-		<div className={( (props.mix ? props.mix : '') + ' results' )}>
+		<div className={( (props.mixClass ? props.mixClass : '') + ' results' )}>
 
 			<div className="results__wrap wrap">
 
@@ -79,6 +79,10 @@ const Results = (props) => {
 
 		</div>
 	)
+};
+
+Results.propTypes = {
+	mixClass: React.PropTypes.string,
 };
 
 const mapStateToProps = (state, ownProps) => ({

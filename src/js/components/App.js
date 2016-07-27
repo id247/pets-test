@@ -2,13 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Main 		from '../containers/pages/Main';
-import Question 	from '../containers/pages/Question';
-import Results 		from '../containers/pages/Results';
+import * as questionsActions from '../actions/questions';
+
+import Main 		from '../components/pages/Main';
+import Question 	from '../components/pages/Question';
+import Results 		from '../components/pages/Results';
 
 import Loading 		from '../components/Loading';
 
 class App extends React.Component {
+
+	componentWillMount() {
+		this.props.init();
+	}
 
 	render() {	
 		const { props } = this;
@@ -20,7 +26,7 @@ class App extends React.Component {
 
 		switch (props.page){
 			case 'questions':
-				page = <Question mix="app__content" />;
+				page = <Question mixClass="app__content" />;
 				bgMod = questionsType + '-' + activeQuestion;
 
 				//super mega ugly shit
@@ -42,13 +48,13 @@ class App extends React.Component {
 				break;
 
 			case 'results':
-				page = <Results mix="app__content" />;
+				page = <Results mixClass="app__content" />;
 				bgMod = 'results';
 				break;
 
 			case 'main':
 			default:
-				page = <Main mix="app__content" />;
+				page = <Main mixClass="app__content" />;
 				preloadImages = (
 					<div>
 						<div className="app__container--cat-0"></div>
@@ -59,12 +65,9 @@ class App extends React.Component {
 
 		return (
 			<div className={('app__container ' + (bgMod ? 'app__container--' + bgMod : '') )}>
-
-				{/*dumb hack for preload images for next page*/}
-				{preloadImages}
 				
 				<Loading 
-					mix="app__loader" 
+					mixClass="app__loader" 
 					loading={props.loading}
 				/>
 
@@ -82,10 +85,16 @@ class App extends React.Component {
 
 				{page}
 
+				{/*dumb hack for preload images for next page*/}
+				{preloadImages}
+
 			</div>
 		);
 	}
 
+};
+
+App.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -95,6 +104,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({ 
+	init: () => {
+		dispatch(questionsActions.questionsGet());	
+	}
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
